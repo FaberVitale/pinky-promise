@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     minify: "esbuild",
     lib: {
-      entry: resolve(__dirname, "./lib/index.ts"),
+      entry: resolve(__dirname, "./lib/pinky-promise.ts"),
       formats: ["es"],
       fileName: "pinky-promise",
     },
