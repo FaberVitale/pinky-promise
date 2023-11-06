@@ -1,0 +1,31 @@
+{
+  "name": "pinky-promise",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist/pinky-promise.js",
+  "module": "dist/pinky-promise.js",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/pinky-promise.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "clean": "rm -rf dist",
+    "build:ts": "tsc -p tsconfig.lib.json",
+    "build:es": "vite build",
+    "prebuild": "npm run clean",
+    "build": "npm run build:es && npm run build:ts",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.10",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
+  }
+}
