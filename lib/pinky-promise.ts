@@ -12,9 +12,35 @@
 type PromiseState<T> = Readonly<
   | { status: "pending" }
   | { status: "fulfilled"; value: T }
-  | { status: "rejected"; reason: unknown }
+  | { status: "rejected"; reason: any }
 >;
+
+/**
+ * The callback passed as argument of PinkyPromise constructor.
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise
+ * @see https://tc39.es/ecma262/multipage/control-abstraction-objects.html#sec-promise-constructor
+ */
+export type PinkyPromiseExecutor<T> = (
+  resolve: (value: T | PromiseLike<T>) => void,
+  reject: (reason?: any) => void,
+) => void;
 
 export class PinkyPromise<T> {
   #state: PromiseState<T> = { status: "pending" };
+
+  constructor(executor: PinkyPromiseExecutor<T>) {
+    if (typeof executor !== "function") {
+      throw new TypeError(`${executor} is not a function`);
+    }
+
+    try {
+      executor(this.#resolve, this.#reject);
+    } catch (executorError) {
+      this.#reject(executorError);
+    }
+  }
+
+  #resolve = (value: T | PromiseLike<T>) => {};
+
+  #reject = (reason: unknown) => {};
 }
