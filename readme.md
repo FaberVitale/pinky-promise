@@ -11,3 +11,7 @@ A partial [Ecmascript Promise](https://developer.mozilla.org/en-US/docs/Web/Java
 
 - [Promise A+ spec](https://promisesaplus.com/)
 - [Ecmascript Promise](https://tc39.es/ecma262/multipage/control-abstraction-objects.html#sec-promise-objects)
+
+## License
+
+[MIT](LICENSE)

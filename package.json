@@ -8,6 +8,7 @@
   "files": [
     "dist"
   ],
+  "license": "MIT",
   "exports": {
     ".": {
       "types": "./dist/pinky-promise.d.ts",
