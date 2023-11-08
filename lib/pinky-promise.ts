@@ -36,7 +36,38 @@ function isThenable<T>(value: unknown): value is PromiseLike<T> {
   );
 }
 
+
 export class PinkyPromise<T> {
+  /**
+   * Creates a new resolved promise.
+   * @returns A resolved promise.
+   */
+  static resolve(): PinkyPromise<void>;
+  /**
+   * Creates a new resolved promise for the provided value.
+   * @param value A promise.
+   * @returns A promise whose internal state matches the provided promise.
+   */
+  static resolve<U>(value: U): PinkyPromise<Awaited<U>>;
+  /**
+   * Creates a new resolved promise for the provided value.
+   * @param value A promise.
+   * @returns A promise whose internal state matches the provided promise.
+   */
+  static resolve<U>(value: U | PromiseLike<U>): PinkyPromise<Awaited<U>>;
+  static resolve(): PinkyPromise<any> {
+    return new PinkyPromise((resolve) => resolve(arguments[0]));
+  }
+
+  /**
+   * Creates a new rejected promise for the provided reason.
+   * @param reason The reason the promise was rejected.
+   * @returns A new rejected Promise.
+   */
+  static reject<U = never>(reason?: any): PinkyPromise<U> {
+    return new PinkyPromise((_, reject) => reject(reason));
+  }
+
   #state: PromiseState<T> = { status: "pending" };
   #fulfilledListeners: OnFulfill<T>[] = [];
   #rejectedListeners: OnReject[] = [];
