@@ -1,7 +1,8 @@
 {
   "name": "pinky-promise",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A Promise A+ implementation written in Typescript",
   "type": "module",
   "main": "dist/pinky-promise.js",
   "module": "dist/pinky-promise.js",
@@ -9,24 +10,27 @@
     "dist"
   ],
   "license": "MIT",
+  "types": "dist/pinky-promise.d.ts",
   "exports": {
     ".": {
       "types": "./dist/pinky-promise.d.ts",
+      "require": "./dist/pinky-promise.cjs",
+      "import": "./dist/pinky-promise.js",
       "default": "./dist/pinky-promise.js"
     }
   },
   "scripts": {
-    "dev": "vite",
     "clean": "rm -rf dist",
-    "build:ts": "tsc -p tsconfig.lib.json",
-    "build:es": "vite build",
-    "prebuild": "npm run clean",
-    "build": "npm run build:es && npm run build:ts",
-    "preview": "vite preview"
+    "build:ts": "tsc -p tsconfig.json",
+    "build:es": "node scripts/build.mjs",
+    "build": "npm run clean && npm run build:es && npm run build:ts",
+    "test": "node --test --test-reporter=spec tests/ && promises-aplus-tests tests/promise-a-plus-adapter.cjs",
+    "test:watch": "node --test --watch --test-reporter=spec tests/"
   },
   "devDependencies": {
     "@types/node": "^20.8.10",
-    "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "esbuild": "^0.19.5",
+    "promises-aplus-tests": "^2.1.2",
+    "typescript": "^5.0.2"
   }
 }

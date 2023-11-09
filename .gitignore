@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# This repo uses pnpm
+package-lock.json
+yarn.lock
