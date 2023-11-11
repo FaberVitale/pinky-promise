@@ -24,7 +24,9 @@
     "build:ts": "tsc -p tsconfig.json",
     "build:es": "node scripts/build.mjs",
     "build": "npm run clean && npm run build:es && npm run build:ts",
-    "test": "node --test --test-reporter=spec tests/ && promises-aplus-tests tests/promise-a-plus-adapter.cjs",
+    "test:a-plus": "promises-aplus-tests tests/promise-a-plus-adapter.cjs",
+    "test:unit": "node --test --test-reporter=spec tests/",
+    "test": "npm run test:unit && npm run test:a-plus",
     "test:watch": "node --test --watch --test-reporter=spec tests/"
   },
   "devDependencies": {
