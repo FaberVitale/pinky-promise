@@ -6,6 +6,12 @@ A [Promise A+](https://promisesaplus.com/) spec compliant Promise implementation
 
 The api is copy of Ecmascript [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
+## Why?
+
+This implementation was built for a [talk](https://github.com/FaberVitale/build-js-promise-from-scratch-talk).
+
+Although fully spec compliant and thoroughly tested, we do no recommend using this implementation the over [`globalThis.Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+
 ## Develop
 
 ### Set node version
